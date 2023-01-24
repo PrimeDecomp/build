@@ -5,9 +5,9 @@ RUN apk add --no-cache curl libarchive-tools \
        | bsdtar -xvf- -C compilers
 
 FROM ghcr.io/decompals/wibo:0.4.1
-RUN apk add --no-cache ninja python3 py3-requests gcompat git
 COPY --from=compilers /compilers /compilers
 COPY --from=devkitpro/devkitppc:20230110 /opt/devkitpro /opt/devkitpro
 ENV DEVKITPPC=/opt/devkitpro/devkitPPC
+RUN apk add --no-cache ninja python3 py3-requests gcompat git
 CMD [ "sh" ]
 
